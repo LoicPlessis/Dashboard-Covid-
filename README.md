@@ -6,14 +6,22 @@ Ouvrir le dossier: covid
 Ouvrir VS Code avec la commande "code ."
 
 Créer 1 fichier:
- - fichier docker-compose.yml : Créer et fait les liens entre les containers Docker ainsi que notre Base de données 
+ - fichier docker-compose.yml : Créer les containers et fait les liens entre les containers Docker, Mysql, Grafana ainsi que notre Base de données 
 Importer 1 fichier :
 - vaccination.sql : il s'agit de notre base de données
  
 
 Voici les 2 graphiques avec leur requêtes:
 
-   SELECT DISTINCT country, MAX(people_fully_vaccinated) AS people_fully_vaccinated
+ SELECT DISTINCT country, MAX(daily_vaccinations) AS daily_vaccinations
+            FROM covid_sql
+            GROUP BY country
+            ORDER BY daily_vaccinations DESC
+            LIMIT 10
+
+
+
+ SELECT DISTINCT country, MAX(people_fully_vaccinated) AS people_fully_vaccinated
             FROM covid_sql
             GROUP BY country
             ORDER BY people_fully_vaccinated DESC
