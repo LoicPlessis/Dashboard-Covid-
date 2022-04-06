@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql
+    container_name: mysql_projet
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      # - MYSQL_USER=admin
+      # - MYSQL_PASSWORD=admin
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./vaccination.sql:/docker-entrypoint-initdb.d/vaccination.sql
+    ports:
+      - "3306:3306"
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana_projet
+    ports:
+      - "3000:3000"
+    volumes: 
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GRAFANA_ADMIN_USER=admin
+      - GRAFANA_ADMIN_PASSWORD=admin
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql-data:
+    name: mysql-data
+  grafana-storage:
+    name: grafana-storage
