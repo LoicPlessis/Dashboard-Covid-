@@ -8,7 +8,7 @@ Ouvrir VS Code avec la commande "code ."
 Créer 1 fichier:
  - fichier docker-compose.yml : Créer et fait les liens entre les containers Docker ainsi que notre Base de données 
 Importer 1 fichier :
--vaccination.sql : il s'agit de notre base de données
+- vaccination.sql : il s'agit de notre base de données
  
 
 Voici les 2 graphiques avec leur requêtes:
